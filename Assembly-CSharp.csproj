@@ -57,15 +57,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Prefabs\Tiles\CoordinateLabeler.cs" />
-    <Compile Include="Assets\Pathfinding\Node.cs" />
     <Compile Include="Assets\Prefabs\Towers\ProjectileHandler.cs" />
     <Compile Include="Assets\Prefabs\Enemies\EnemyDamageSystem.cs" />
+    <Compile Include="Assets\Prefabs\Enemies\Enemy.cs" />
+    <Compile Include="Assets\Prefabs\Tiles\TileHandler.cs" />
+    <Compile Include="Assets\Pathfinding\Node.cs" />
     <Compile Include="Assets\Prefabs\Enemies\EnemyMover.cs" />
     <Compile Include="Assets\Prefabs\Towers\Tower.cs" />
     <Compile Include="Assets\Pathfinding\GridManager.cs" />
-    <Compile Include="Assets\Prefabs\Enemies\Enemy.cs" />
     <Compile Include="Assets\Prefabs\Towers\TowerShooting.cs" />
-    <Compile Include="Assets\Prefabs\Tiles\TileHandler.cs" />
+    <Compile Include="Assets\Pathfinding\Pathfinder.cs" />
     <Compile Include="Assets\Prefabs\Bank\Bank.cs" />
     <Compile Include="Assets\Prefabs\Enemies\ObjectPool.cs" />
     <Compile Include="Assets\UI\GoldUI.cs" />

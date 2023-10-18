@@ -15,12 +15,6 @@ public class TowerShooting : MonoBehaviour
 
     GameObject[] projectilesPool;
 
-    void Awake()
-    {
-        PopulatePool();
-        StartCoroutine(TryShoot());
-    }
-
     void Update()
     {
         if ((target == null) || (target.gameObject.activeInHierarchy == false) || (Vector3.Distance(this.transform.position, target.transform.position) > shootRange))
@@ -31,6 +25,12 @@ public class TowerShooting : MonoBehaviour
         {
             AimWeapon(); 
         }
+    }
+
+    public void StartShoot()
+    {
+        PopulatePool();
+        StartCoroutine(TryShoot());
     }
 
     void PopulatePool()
@@ -70,7 +70,7 @@ public class TowerShooting : MonoBehaviour
     {
         while (true)
         {
-            if ((target != null) && (target.gameObject.activeInHierarchy))
+            if ((target != null) && (target.gameObject.activeInHierarchy) && projectileSpawner.gameObject.activeInHierarchy)
             {
                 EnableObjectInPool();
             }

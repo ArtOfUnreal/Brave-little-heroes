@@ -10,20 +10,23 @@ using UnityEngine;
 public class CoordinateLabeler : MonoBehaviour
 {
     [SerializeField] Color emptyColor = Color.white;
-    [SerializeField] Color occupiedColor = Color.grey;
+    [SerializeField] Color notWalkableColor = Color.grey;
+    [SerializeField] Color isExploredColor = Color.yellow;
+    [SerializeField] Color isPathColor = new Color(1f, 0.5f, 0f);
 
-    static readonly float worldGridStep = 10f;
+
+    float worldGridStep = 10f;
 
     TextMeshPro label;
-    TileHandler tileHandler;
     Vector2Int coordinates = new Vector2Int();
-    // Update is called once per frame
-
+    GridManager gridManager;
+    
     private void Awake()
     {
+        gridManager = FindObjectOfType<GridManager>();
         label = GetComponent<TextMeshPro>();
         label.enabled = false;
-        tileHandler = gameObject.GetComponentInParent<TileHandler>();
+        worldGridStep = gridManager.WorldGridStep;
         DisplayCoordinates();
     }
 
@@ -59,14 +62,28 @@ public class CoordinateLabeler : MonoBehaviour
 
     void SetCoordinatesLabelColor()
     {
-        if (tileHandler.IsPlaceable)
+        if (gridManager == null) { return; }
+
+        Node node = gridManager.GetNode(coordinates);
+        if (node == null) { return; }
+
+        if (!node.isWalkable) 
         {
+            label.color = notWalkableColor; 
+        }
+        else if (node.isPath) 
+        { 
+            label.color = isPathColor; 
+        }
+        else if (node.isExplored)
+        { 
+            label.color = isExploredColor; 
+        }
+        else 
+        { 
             label.color = emptyColor;
         }
-        else
-        {
-            label.color = occupiedColor;
-        }
+        
     }
 
     private void UpdateTileName()
